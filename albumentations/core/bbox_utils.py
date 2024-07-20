@@ -357,9 +357,17 @@ def convert_bbox_to_albumentations(
 
         w_half, h_half = width / 2, height / 2
         x_min = x - w_half
+        if x_min < 0:
+            x_min = 0
         y_min = y - h_half
+        if y_min > 0:
+            y_min = 0
         x_max = x_min + width
+        if x_max > 1:
+            x_max = 1
         y_max = y_min + height
+        if y_max > 1:
+            y_max = 1
     else:
         (x_min, y_min, x_max, y_max), tail = bbox[:4], bbox[4:]
 
